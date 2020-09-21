@@ -11,7 +11,7 @@ public class BookDTO implements OutputConverter<BookDTO, Book> {
 
     private int id;
 
-    private String title;
+    private String bookname;
 
     private String press;
 
@@ -33,12 +33,12 @@ public class BookDTO implements OutputConverter<BookDTO, Book> {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getBookname() {
+        return bookname;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setBookname(String bookname) {
+        this.bookname = bookname;
     }
 
     public String getPress() {

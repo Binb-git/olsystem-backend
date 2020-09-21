@@ -1,8 +1,8 @@
 package njust.se2.librarymanagementsystemweb.pojo;
 
-import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "book")
@@ -18,7 +18,7 @@ public class Book {
     private Category category;
 
     String cover;
-    String title;
+    String bookname;
     String author;
     String date;
     String press;
@@ -72,12 +72,12 @@ public class Book {
         this.cover = cover;
     }
 
-    public String getTitle() {
-        return title;
+    public String getBookname() {
+        return bookname;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setBookname(String bookname) {
+        this.bookname = bookname;
     }
 
     public String getAuthor() {
