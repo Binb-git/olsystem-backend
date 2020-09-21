@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -27,8 +26,8 @@ public class LibraryController {
      */
     @CrossOrigin
     @GetMapping("/api/books")
-    public List<Book> list() throws Exception {
-        return bookService.list();
+    public Result list() throws Exception {
+        return ResultFactory.buildSuccessResult(bookService.list());
     }
 
     /**
@@ -68,9 +67,9 @@ public class LibraryController {
      */
     @CrossOrigin
     @GetMapping("/api/categories/{cid}/books")
-    public List<Book> listByCategory(@PathVariable("cid") int cid) throws Exception {
+    public Result listByCategory(@PathVariable("cid") int cid) throws Exception {
         if (cid != 0) {
-            return bookService.listByCategory(cid);
+            return ResultFactory.buildSuccessResult(bookService.listByCategory(cid));
         } else {
             return list();
         }
