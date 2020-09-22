@@ -113,7 +113,7 @@ public class UserService {
         userInDB.setPhone(user.getPhone());
         userInDB.setEmail(user.getEmail());
         userdao.save(userInDB);
-        //adminUserRoleService.saveRoleChanges(userInDB.getId(), user.getRoles());
+        adminUserRoleService.saveRoleChanges(userInDB.getId(), user.getRoles());
     }
 
     public int register(User user) {

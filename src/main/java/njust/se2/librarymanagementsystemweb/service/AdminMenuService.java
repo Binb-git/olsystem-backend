@@ -48,14 +48,13 @@ public class AdminMenuService {
     }
 
     public List<AdminMenu> getMenusByRoleId(int rid) {
+        //从rid中查出mid
         List<Integer> menuIds = adminRoleMenuService.findAllByRid(rid)
                 .stream().map(AdminRoleMenu::getMid).collect(Collectors.toList());
+        //用mid当作admin_menu的id查表
         List<AdminMenu> menus = adminMenuDAO.findAllById(menuIds);
 
         handleMenus(menus);
-//        for (AdminMenu menu : menus) {
-//            System.out.print(menu + " ");
-//        }
         return menus;
     }
 

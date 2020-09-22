@@ -16,6 +16,11 @@ public class AdminRolePermissionService {
     @Autowired
     AdminRolePermissionDAO adminRolePermissionDAO;
 
+    /**
+     * 通过 rid 查询所有的角色权限
+     * @param rid admin_role表中的id
+     * @return 所有符合条件的条目
+     */
     List<AdminRolePermission> findAllByRid(int rid) {
         return adminRolePermissionDAO.findAllByRid(rid);
     }

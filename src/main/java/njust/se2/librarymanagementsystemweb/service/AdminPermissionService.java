@@ -49,6 +49,11 @@ public class AdminPermissionService {
         return false;
     }
 
+    /**
+     * 通过admin_role的id查询列出所有的权限
+     * @param rid admin_role的id
+     * @return 所有符合条件的权限
+     */
     public List<AdminPermission> listPermsByRoleId(int rid) {
         List<Integer> pids = adminRolePermissionService.findAllByRid(rid)
                 .stream().map(AdminRolePermission::getPid).collect(Collectors.toList());
