@@ -41,7 +41,7 @@ public class LibraryController {
     @PostMapping("/api/admin/content/books")
     public Result addOrUpdate(@RequestBody Book book) throws Exception {
         bookService.addOrUpdate(book);
-        return ResultFactory.buildSuccessResult("修改成功");
+        return ResultFactory.buildSuccessResult_p("修改成功", null);
     }
 
     /**
@@ -54,7 +54,7 @@ public class LibraryController {
     @PostMapping("/api/admin/content/books/delete")
     public Result delete(@RequestBody Book book) throws Exception {
         bookService.deleteById(book.getId());
-        return ResultFactory.buildSuccessResult("删除成功");
+        return ResultFactory.buildSuccessResult_p("删除成功", null);
     }
 
 

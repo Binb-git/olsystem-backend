@@ -37,7 +37,8 @@ public class LoginController {
         usernamePasswordToken.setRememberMe(true);
         try {
             subject.login(usernamePasswordToken);
-            return ResultFactory.buildSuccessResult(username);
+            String message = "登录成功";
+            return ResultFactory.buildSuccessResult_p(message, username);
         } catch (AuthenticationException e) {
             String message = "账号密码错误";
             return ResultFactory.buildFailResult(message);

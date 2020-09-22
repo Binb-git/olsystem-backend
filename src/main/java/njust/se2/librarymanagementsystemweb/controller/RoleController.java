@@ -35,7 +35,7 @@ public class RoleController {
     public Result updateRoleStatus(@RequestBody AdminRole requestRole) {
         AdminRole adminRole = adminRoleService.updateRoleStatus(requestRole);
         String message = "用户" + adminRole.getNameZh() + "状态更新成功";
-        return ResultFactory.buildSuccessResult(message);
+        return ResultFactory.buildSuccessResult_p(message, null);
     }
 
     @PutMapping("/api/admin/role")
@@ -43,14 +43,14 @@ public class RoleController {
         adminRoleService.addOrUpdate(requestRole);
         adminRolePermissionService.savePermChanges(requestRole.getId(), requestRole.getPerms());
         String message = "修改角色信息成功";
-        return ResultFactory.buildSuccessResult(message);
+        return ResultFactory.buildSuccessResult_p(message, null);
     }
 
 
     @PostMapping("/api/admin/role")
     public Result addRole(@RequestBody AdminRole requestRole) {
         adminRoleService.editRole(requestRole);
-        return ResultFactory.buildSuccessResult("修改用户成功");
+        return ResultFactory.buildSuccessResult_p("修改用户成功", null);
     }
 
     @GetMapping("/api/admin/role/perm")
@@ -61,6 +61,6 @@ public class RoleController {
     @PutMapping("/api/admin/role/menu")
     public Result updateRoleMenu(@RequestParam int rid, @RequestBody Map<String, List<Integer>> menusIds) {
         adminRoleMenuService.updateRoleMenu(rid, menusIds);
-        return ResultFactory.buildSuccessResult("更新成功");
+        return ResultFactory.buildSuccessResult_p("更新成功", null);
     }
 }

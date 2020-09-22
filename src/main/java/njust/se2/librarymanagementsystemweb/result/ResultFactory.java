@@ -5,6 +5,10 @@ public class ResultFactory {
         return buildResult(ResultCode.SUCCESS, "成功", data);
     }
 
+    public static Result buildSuccessResult_p(String message, Object data) {
+        return buildResult(ResultCode.SUCCESS, message, data);
+    }
+
     public static Result buildFailResult(String message) {
         return buildResult(ResultCode.FAIL, message, null);
     }

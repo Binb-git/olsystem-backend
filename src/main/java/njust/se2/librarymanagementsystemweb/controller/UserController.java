@@ -26,26 +26,26 @@ public class UserController {
     @PutMapping("/api/admin/user/status")
     public Result updateUserStatus(@RequestBody @Valid User requestUser) {
         userService.updateUserStatus(requestUser);
-        return ResultFactory.buildSuccessResult("用户状态更新成功");
+        return ResultFactory.buildSuccessResult_p("用户状态更新成功", null);
     }
 
     @PutMapping("/api/admin/user/password")
     public Result resetPassword(@RequestBody @Valid User requestUser) {
 
         userService.resetPassword(requestUser);
-        return ResultFactory.buildSuccessResult("重置密码成功");
+        return ResultFactory.buildSuccessResult_p("重置密码成功", null);
     }
 
     @PutMapping("/api/admin/user")
     public Result editUser(@RequestBody @Valid User requestUser) {
         userService.editUser(requestUser);
-        return ResultFactory.buildSuccessResult("修改用户信息成功");
+        return ResultFactory.buildSuccessResult_p("修改用户信息成功", null);
     }
 
     @CrossOrigin
     @PostMapping("/api/admin/user/delete")
     public Result delete(@RequestBody User user) throws Exception {
         userService.deleteById(user.getId());
-        return ResultFactory.buildSuccessResult("删除成功");
+        return ResultFactory.buildSuccessResult_p("删除成功", null);
     }
 }
