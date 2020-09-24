@@ -21,7 +21,7 @@ public class BookService {
      * @return 书籍列表
      */
     public List<Book> list() {
-        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
         return bookDAO.findAll(sort);
     }
 
