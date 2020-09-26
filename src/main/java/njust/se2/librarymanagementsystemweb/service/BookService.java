@@ -1,8 +1,10 @@
 package njust.se2.librarymanagementsystemweb.service;
 
 import njust.se2.librarymanagementsystemweb.dao.BookDao;
+import njust.se2.librarymanagementsystemweb.dao.WantedListDao;
 import njust.se2.librarymanagementsystemweb.pojo.Book;
 import njust.se2.librarymanagementsystemweb.pojo.Category;
+import njust.se2.librarymanagementsystemweb.pojo.WantedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,8 @@ public class BookService {
     BookDao bookDAO;
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    WantedListDao wantedListDao;
 
     /**
      * 返回所有书籍的列表
@@ -58,5 +62,18 @@ public class BookService {
      */
     public List<Book> Search(String keywords) {
         return bookDAO.findAllByBooknameLikeOrAuthorLike('%' + keywords + '%', '%' + keywords + '%');
+    }
+
+    public List<Book> SearchById(int id) {
+        return bookDAO.findAllById(id);
+    }
+
+    public List<WantedList> SearchbyUsername(String username) {
+        return wantedListDao.findAllByUsername(username);
+    }
+
+    public void addWantedList(WantedList wantedList) {
+        System.out.println("addWantedList success");
+        wantedListDao.save(wantedList);
     }
 }

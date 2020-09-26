@@ -1,6 +1,7 @@
 package njust.se2.librarymanagementsystemweb.controller;
 
 import njust.se2.librarymanagementsystemweb.pojo.Book;
+import njust.se2.librarymanagementsystemweb.pojo.WantedList;
 import njust.se2.librarymanagementsystemweb.result.Result;
 import njust.se2.librarymanagementsystemweb.result.ResultFactory;
 import njust.se2.librarymanagementsystemweb.service.BookService;
@@ -91,6 +92,36 @@ public class LibraryController {
             return ResultFactory.buildSuccessResult(bookService.Search(keywords));
         }
     }
+
+//    @CrossOrigin
+//    @PostMapping("/api/addwantedlist")
+//    public Result addWantedlist(@RequestBody Book book, @RequestBody User user) {
+//        //读取书籍的信息
+////        bookService.SearchById(book.getId());
+//        System.out.println(book.getId() + " " + user.getUsername());
+//        bookService.addWantedList(book, user);
+//        return ResultFactory.buildSuccessResult_p("修改成功", null);
+//    }
+
+    @CrossOrigin
+    @PostMapping("/api/addwantedlist")
+    public Result addWantedlist(@RequestBody WantedList wantedList) {
+        //读取书籍的信息
+//        bookService.SearchById(book.getId());
+        System.out.println(wantedList.getBid()+" "+ wantedList.getUsername());
+        bookService.addWantedList(wantedList);
+        return ResultFactory.buildSuccessResult_p("修改成功", null);
+    }
+
+    @CrossOrigin
+    @GetMapping("/api/wantedlist")
+    public Result SearchWantedlist(@RequestBody WantedList wantedList) {
+        bookService.SearchbyUsername(wantedList.getUsername());
+        return ResultFactory.buildSuccessResult_p("搜索成功", bookService.SearchbyUsername(wantedList.getUsername()));
+    }
+
+//    @CrossOrigin
+//    @PostMapping("")
 
     @CrossOrigin
     @PostMapping("/api/admin/content/books/covers")
