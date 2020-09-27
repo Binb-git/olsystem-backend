@@ -123,7 +123,7 @@ public class LibraryController {
         for (WantedList wantedList1 : wantedLists) {
             int bid = wantedList1.getBid();
             bookService.SearchById(bid);
-            Book book = (Book) bookService.SearchById(bid);
+            Book book = bookService.SearchById(bid).get(0);
             System.out.println(book.getBookname());
             bookList.add(book);
         }
