@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface WantedListDao extends JpaRepository<WantedList,Integer> {
     List<WantedList> findAllByUsername(String username);
+    WantedList findByBid(int bid);
+    void deleteById(int id);
 }

@@ -60,6 +60,15 @@ public class LibraryController {
         return ResultFactory.buildSuccessResult_p("删除成功", null);
     }
 
+    @CrossOrigin
+    @PostMapping("/api/wantedlist/books/delete")
+    public Result deleteWantedList(@RequestBody WantedList wantedList) throws Exception {
+        List<WantedList> wantedLists = bookService.ListbyUsername(wantedList.getUsername());
+        int id = wantedLists.get(0).getId();
+        bookService.deleteById(id);
+        return ResultFactory.buildSuccessResult_p("删除成功",null);
+    }
+
 
     /**
      * 根据类别查找书籍
@@ -95,16 +104,6 @@ public class LibraryController {
         }
     }
 
-//    @CrossOrigin
-//    @PostMapping("/api/addwantedlist")
-//    public Result addWantedlist(@RequestBody Book book, @RequestBody User user) {
-//        //读取书籍的信息
-////        bookService.SearchById(book.getId());
-//        System.out.println(book.getId() + " " + user.getUsername());
-//        bookService.addWantedList(book, user);
-//        return ResultFactory.buildSuccessResult_p("修改成功", null);
-//    }
-
     @CrossOrigin
     @PostMapping("/api/addwantedlist")
     public Result addWantedlist(@RequestBody WantedList wantedList) {
@@ -124,7 +123,6 @@ public class LibraryController {
             int bid = wantedList1.getBid();
             bookService.SearchById(bid);
             Book book = bookService.SearchById(bid).get(0);
-            System.out.println(book.getBookname());
             bookList.add(book);
         }
         return ResultFactory.buildSuccessResult_p("asda",bookList);

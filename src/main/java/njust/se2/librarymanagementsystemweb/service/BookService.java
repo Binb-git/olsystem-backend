@@ -76,4 +76,23 @@ public class BookService {
         System.out.println("addWantedList success");
         wantedListDao.save(wantedList);
     }
+
+    /**
+     * 查询是否存在
+     *
+     * @param bid 书id
+     * @return 是否存在 boolean
+     */
+    public boolean isExist(int bid) {
+        WantedList wantedList = getByBid(bid);
+        return wantedList != null;
+    }
+
+    public WantedList getByBid(int bid) {
+        return wantedListDao.findByBid(bid);
+    }
+
+    public void deletebyId(int id) {
+        wantedListDao.deleteById(id);
+    }
 }
