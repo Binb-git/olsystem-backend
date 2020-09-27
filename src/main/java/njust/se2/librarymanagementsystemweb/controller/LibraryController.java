@@ -64,12 +64,20 @@ public class LibraryController {
     @PostMapping("/api/wantedlist/books/delete")
     public Result deleteWantedList(@RequestBody WantedList wantedList) throws Exception {
         List<WantedList> wantedLists = bookService.ListbyUsername(wantedList.getUsername());
-        int id = wantedLists.get(0).getId();
-        bookService.deleteById(id);
+        for (int i = 0; i < wantedLists.size(); i++) {
+            if (wantedList.getBid() == wantedLists.get(i).getBid()) {
+                int id = wantedLists.get(i).getId();
+                bookService.deletebyId(id);
+            }
+        }
         return ResultFactory.buildSuccessResult_p("删除成功",null);
     }
 
-
+   /* @CrossOrigin
+    @GetMapping("/api/admin/books")
+    public Result listBooks() {
+        return ResultFactory.buildSuccessResult(BookService.list());
+    }*/
     /**
      * 根据类别查找书籍
      *

@@ -8,6 +8,7 @@ import njust.se2.librarymanagementsystemweb.pojo.WantedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class BookService {
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
         return bookDAO.findAll(sort);
     }
+
 
     /**
      * 无主键则增添，有主键则更新。
