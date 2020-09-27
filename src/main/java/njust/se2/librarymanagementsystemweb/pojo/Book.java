@@ -87,4 +87,19 @@ public class Book {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    public Book(int id, Category category, String cover, String bookname, String author, String date, String press, String abs) {
+        this.id = id;
+        this.category = category;
+        this.cover = cover;
+        this.bookname = bookname;
+        this.author = author;
+        this.date = date;
+        this.press = press;
+        this.abs = abs;
+    }
+
+    public Book() {
+
+    }
 }

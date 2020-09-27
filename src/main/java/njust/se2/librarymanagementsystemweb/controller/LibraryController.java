@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -114,14 +116,27 @@ public class LibraryController {
     }
 
     @CrossOrigin
-    @GetMapping("/api/wantedlist")
+    @PostMapping("/api/wantedlist")
     public Result SearchWantedlist(@RequestBody WantedList wantedList) {
-        bookService.SearchbyUsername(wantedList.getUsername());
-        return ResultFactory.buildSuccessResult_p("搜索成功", bookService.SearchbyUsername(wantedList.getUsername()));
+        List<WantedList> wantedLists = bookService.ListbyUsername(wantedList.getUsername());
+        List<Book> bookList = new ArrayList<Book>();
+        for (WantedList wantedList1 : wantedLists) {
+            int bid = wantedList1.getBid();
+            bookService.SearchById(bid);
+            Book book = (Book) bookService.SearchById(bid);
+            System.out.println(book.getBookname());
+            bookList.add(book);
+        }
+        return ResultFactory.buildSuccessResult_p("asda",bookList);
     }
 
-//    @CrossOrigin
-//    @PostMapping("")
+    @CrossOrigin
+    @PostMapping("/api/getbookbybid")
+    public Result GetBookbyBid(@RequestBody Book book) {
+        return ResultFactory.buildSuccessResult(bookService.SearchById(book.getId()));
+    }
+
+
 
     @CrossOrigin
     @PostMapping("/api/admin/content/books/covers")

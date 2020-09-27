@@ -68,7 +68,7 @@ public class BookService {
         return bookDAO.findAllById(id);
     }
 
-    public List<WantedList> SearchbyUsername(String username) {
+    public List<WantedList> ListbyUsername(String username) {
         return wantedListDao.findAllByUsername(username);
     }
 
