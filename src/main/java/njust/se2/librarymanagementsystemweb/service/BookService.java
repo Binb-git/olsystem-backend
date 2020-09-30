@@ -8,7 +8,6 @@ import njust.se2.librarymanagementsystemweb.pojo.WantedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
@@ -70,13 +69,17 @@ public class BookService {
         return bookDAO.findAllById(id);
     }
 
+    public Book findBookById(int id) {
+        return bookDAO.findBookById(id);
+    }
+
     public List<WantedList> ListbyUsername(String username) {
         return wantedListDao.findAllByUsername(username);
     }
 
     public void addWantedList(WantedList wantedList) {
-        System.out.println("addWantedList success");
         wantedListDao.save(wantedList);
+        System.out.println("addWantedList success");
     }
 
     /**

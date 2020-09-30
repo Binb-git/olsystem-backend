@@ -131,6 +131,7 @@ public class LibraryController {
             int bid = wantedList1.getBid();
             bookService.SearchById(bid);
             Book book = bookService.SearchById(bid).get(0);
+            System.out.println(book.getBookname());
             bookList.add(book);
         }
         return ResultFactory.buildSuccessResult_p("asda",bookList);
@@ -139,7 +140,7 @@ public class LibraryController {
     @CrossOrigin
     @PostMapping("/api/getbookbybid")
     public Result GetBookbyBid(@RequestBody Book book) {
-        return ResultFactory.buildSuccessResult(bookService.SearchById(book.getId()));
+        return ResultFactory.buildSuccessResult(bookService.findBookById(book.getId()));
     }
 
 
