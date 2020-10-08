@@ -1,6 +1,7 @@
 package njust.se2.librarymanagementsystemweb.result;
 
 import lombok.Data;
+
 @Data
 
 public class Result {

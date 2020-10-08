@@ -59,7 +59,7 @@ public class AdminMenuService {
     }
 
     /**
-     * 调整menu结构
+     * 调整 menu 结构
      *
      * @param menus Menu items list without structure
      */

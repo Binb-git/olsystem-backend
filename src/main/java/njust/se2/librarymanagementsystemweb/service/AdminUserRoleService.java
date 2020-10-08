@@ -15,15 +15,19 @@ public class AdminUserRoleService {
     @Autowired
     AdminUserRoleDAO adminUserRoleDAO;
 
+    /**
+     * 根据 uid 列出所有用户角色
+     * @param uid 用户 id
+     * @return 用户角色列表
+     */
     public List<AdminUserRole> listAllByUid(int uid) {
         return adminUserRoleDAO.findAllByUid(uid);
     }
 
-//    @Modifying
-
     /**
-     * 保存身份更改, 通过这个方法，可以看到把user表的id写入了admin_user_role表的uid中，把role信息写入到了rid中
-     * @param uid user 表中的id
+     * 保存身份更改, 通过这个方法，把 user表的 id写入了 admin_user_role表的 uid中，
+     * 把 role信息写入到了rid中
+     * @param uid   user 表中的id
      * @param roles user 表中的身份，实则表中没有，所以加了transient注解，表明不进入数据库
      */
     @Transactional

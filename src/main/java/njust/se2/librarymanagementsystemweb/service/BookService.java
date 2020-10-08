@@ -22,6 +22,7 @@ public class BookService {
 
     /**
      * 返回所有书籍的列表
+     *
      * @return 书籍列表
      */
     public List<Book> list() {
@@ -32,6 +33,7 @@ public class BookService {
 
     /**
      * 无主键则增添，有主键则更新。
+     *
      * @param book 书籍对象
      */
     public void addOrUpdate(Book book) {
@@ -40,6 +42,7 @@ public class BookService {
 
     /**
      * 根据id删除书籍
+     *
      * @param id 书的id
      */
     public void deleteById(int id) {
@@ -48,6 +51,7 @@ public class BookService {
 
     /**
      * 根据cid列出所有书籍信息
+     *
      * @param cid 类别id
      * @return 所有符合条件的书籍列表信息
      */
@@ -58,25 +62,49 @@ public class BookService {
 
     /**
      * 根据关键字查询书籍信息
-     * @param keywords  关键字
+     *
+     * @param keywords 关键字
      * @return 符合关键字条件的书籍列表
      */
     public List<Book> Search(String keywords) {
         return bookDAO.findAllByBooknameLikeOrAuthorLike('%' + keywords + '%', '%' + keywords + '%');
     }
 
+    /**
+     * 根据 id 查找书籍
+     *
+     * @param id 书籍 id
+     * @return 查找到的书籍列表
+     */
     public List<Book> SearchById(int id) {
         return bookDAO.findAllById(id);
     }
 
+    /**
+     * 根据书籍 id 查找书籍
+     *
+     * @param id 书籍 id
+     * @return 查找到的书籍对象
+     */
     public Book findBookById(int id) {
         return bookDAO.findBookById(id);
     }
 
+    /**
+     * 根据 username 查找书籍列表
+     *
+     * @param username 用户名
+     * @return 书籍列表
+     */
     public List<WantedList> ListbyUsername(String username) {
         return wantedListDao.findAllByUsername(username);
     }
 
+    /**
+     * 添加心愿单书籍
+     *
+     * @param wantedList 收藏夹对象
+     */
     public void addWantedList(WantedList wantedList) {
         wantedListDao.save(wantedList);
         System.out.println("addWantedList success");
@@ -93,10 +121,21 @@ public class BookService {
         return wantedList != null;
     }
 
+    /**
+     * 根据 bid 查找书籍
+     *
+     * @param bid 书籍 id
+     * @return 查找到的书籍列表
+     */
     public WantedList getByBid(int bid) {
         return wantedListDao.findByBid(bid);
     }
 
+    /**
+     * 根据 id 删除心愿单书籍
+     *
+     * @param id 书籍唯一id
+     */
     public void deletebyId(int id) {
         wantedListDao.deleteById(id);
     }

@@ -70,7 +70,7 @@ public class LibraryController {
                 bookService.deletebyId(id);
             }
         }
-        return ResultFactory.buildSuccessResult_p("删除成功",null);
+        return ResultFactory.buildSuccessResult_p("删除成功", null);
     }
 
    /* @CrossOrigin
@@ -78,6 +78,7 @@ public class LibraryController {
     public Result listBooks() {
         return ResultFactory.buildSuccessResult(BookService.list());
     }*/
+
     /**
      * 根据类别查找书籍
      *
@@ -117,7 +118,7 @@ public class LibraryController {
     public Result addWantedlist(@RequestBody WantedList wantedList) {
         //读取书籍的信息
 //        bookService.SearchById(book.getId());
-        System.out.println(wantedList.getBid()+" "+ wantedList.getUsername());
+        System.out.println(wantedList.getBid() + " " + wantedList.getUsername());
         bookService.addWantedList(wantedList);
         return ResultFactory.buildSuccessResult_p("修改成功", null);
     }
@@ -134,7 +135,7 @@ public class LibraryController {
             System.out.println(book.getBookname());
             bookList.add(book);
         }
-        return ResultFactory.buildSuccessResult_p("asda",bookList);
+        return ResultFactory.buildSuccessResult_p("查找成功", bookList);
     }
 
     @CrossOrigin
@@ -142,7 +143,6 @@ public class LibraryController {
     public Result GetBookbyBid(@RequestBody Book book) {
         return ResultFactory.buildSuccessResult(bookService.findBookById(book.getId()));
     }
-
 
 
     @CrossOrigin

@@ -51,6 +51,7 @@ public class AdminPermissionService {
 
     /**
      * 通过admin_role的id查询列出所有的权限
+     *
      * @param rid admin_role的id
      * @return 所有符合条件的权限
      */
@@ -60,6 +61,11 @@ public class AdminPermissionService {
         return adminPermissionDAO.findAllById(pids);
     }
 
+    /**
+     * 根据用户名列出权限 url 列表
+     * @param username 用户名
+     * @return 用户对应的权限 map
+     */
     public Set<String> listPermissionURLsByUser(String username) {
         List<Integer> rids = adminRoleService.listRolesByUser(username)
                 .stream().map(AdminRole::getId).collect(Collectors.toList());

@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
 @RestController
 @RequestMapping("main")
 public class HelloController {
@@ -26,7 +25,7 @@ public class HelloController {
                     put("name" + i, "学号:" + i);
                 }
                 put("name", "张三");
-                put("sex","男");
+                put("sex", "男");
             }
         };
     }

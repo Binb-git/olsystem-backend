@@ -23,11 +23,13 @@ public class UserService {
     @Autowired
     AdminUserRoleService adminUserRoleService;
 
+    /**
+     * 列出所有用户对象
+     *
+     * @return 返回数据传输层对象
+     */
     public List<UserDTO> list() {
         List<User> users = userdao.findAll();
-
-        // Find all roles in DB to enable JPA persistence context.
-        // List<AdminRole> allRoles = adminRoleService.findAll();
 
         List<UserDTO> userDTOS = users
                 .stream().map(user -> (UserDTO) new UserDTO().convertFrom(user)).collect(Collectors.toList());
@@ -87,6 +89,11 @@ public class UserService {
         userdao.save(userInDB);
     }
 
+    /**
+     * 重置密码
+     *
+     * @param user 接收到的用户对象
+     */
     public void resetPassword(User user) {
         User userInDB = userdao.findByUsername(user.getUsername());
         String salt = new SecureRandomNumberGenerator().nextBytes().toString();
@@ -97,15 +104,11 @@ public class UserService {
         userdao.save(userInDB);
     }
 
-//    public void editUser(User user) {
-//        User userInDB = userdao.findByUsername(user.getUsername());
-//        userInDB.setName(user.getName());
-//        userInDB.setPhone(user.getPhone());
-//        userInDB.setEmail(user.getEmail());
-//        userdao.save(userInDB);
-//        //adminUserRoleService.saveRoleChanges(userInDB.getId(), user.getRoles());
-//    }
-
+    /**
+     * 编辑用户
+     *
+     * @param user 接收到的用户对象
+     */
     public void editUser(User user) {
         User userInDB = userdao.findById(user.getId());
         userInDB.setName(user.getName());
@@ -116,6 +119,12 @@ public class UserService {
         adminUserRoleService.saveRoleChanges(userInDB.getId(), user.getRoles());
     }
 
+    /**
+     * 注册
+     *
+     * @param user 接收到的用户对象
+     * @return 返回内部状态码
+     */
     public int register(User user) {
         String username = user.getUsername();
         String name = user.getName();
@@ -141,7 +150,7 @@ public class UserService {
             return 2;
         }
 
-        // 默认生成 16 位盐
+        // 默认生成 16 位 salt
         String salt = new SecureRandomNumberGenerator().nextBytes().toString();
         int times = 2;
         String encodedPassword = new SimpleHash("md5", password, salt, times).toString();
@@ -154,6 +163,11 @@ public class UserService {
         return 1;
     }
 
+    /**
+     * 根据 id 删除用户
+     *
+     * @param id 用户 id
+     */
     public void deleteById(int id) {
         userdao.deleteById(id);
     }

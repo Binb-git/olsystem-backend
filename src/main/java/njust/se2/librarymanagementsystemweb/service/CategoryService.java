@@ -15,15 +15,17 @@ public class CategoryService {
 
     /**
      * 将图书列表根据id排序
+     *
      * @return 排序过后的图书列表
      */
     public List<Category> list() {
-        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
         return categoryDAO.findAll(sort);
     }
 
     /**
      * 获取图书id信息
+     *
      * @param id 图书id信息
      * @return 查询是否库中有此id信息，没有则添加，有则返回。
      */

@@ -18,6 +18,7 @@ public class AdminRolePermissionService {
 
     /**
      * 通过 rid 查询所有的角色权限
+     *
      * @param rid admin_role表中的id
      * @return 所有符合条件的条目
      */
@@ -25,7 +26,11 @@ public class AdminRolePermissionService {
         return adminRolePermissionDAO.findAllByRid(rid);
     }
 
-//    @Modifying
+    /**
+     * 更改权限信息
+     * @param rid 职位 id
+     * @param perms 权限对象列表
+     */
     @Transactional
     public void savePermChanges(int rid, List<AdminPermission> perms) {
         adminRolePermissionDAO.deleteAllByRid(rid);

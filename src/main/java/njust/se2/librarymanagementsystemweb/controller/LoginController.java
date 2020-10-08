@@ -20,6 +20,7 @@ public class LoginController {
 
     /**
      * 登录方法
+     *
      * @param requestUser 请求用户对象
      * @return 状态码 是否运行登录
      */
@@ -27,8 +28,8 @@ public class LoginController {
     @PostMapping(value = "api/login")
     @ResponseBody
     public Result login(@RequestBody User requestUser) {
-        // 对 html 标签进行转义，防止 XSS 攻击
         String username = requestUser.getUsername();
+        // 对 html 标签进行转义，防止 XSS 攻击
         username = HtmlUtils.htmlEscape(username);
         Subject subject = SecurityUtils.getSubject();
 
@@ -43,14 +44,6 @@ public class LoginController {
             String message = "账号密码错误";
             return ResultFactory.buildFailResult(message);
         }
-
-//        User user = userService.get(username, requestUser.getPassword());
-//        if (user == null) {
-//            return new Result(400);
-//        } else {
-//            session.setAttribute("user",user);
-//            return new Result(200);
-//        }
     }
 
     @CrossOrigin
@@ -66,9 +59,8 @@ public class LoginController {
     @CrossOrigin
     @ResponseBody
     @GetMapping(value = "api/authentication")
-    public String authentication(){
+    public String authentication() {
         return "身份认证成功";
     }
-
 
 }
