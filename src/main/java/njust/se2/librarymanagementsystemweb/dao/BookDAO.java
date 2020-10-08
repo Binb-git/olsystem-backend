@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface BookDao extends JpaRepository<Book, Integer> {
+public interface BookDAO extends JpaRepository<Book, Integer> {
     List<Book> findAllByCategory(Category category);
 
     List<Book> findAllByBooknameLikeOrAuthorLike(String keyword1, String keyword2);

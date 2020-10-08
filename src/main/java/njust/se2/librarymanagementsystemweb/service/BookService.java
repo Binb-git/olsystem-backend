@@ -1,7 +1,7 @@
 package njust.se2.librarymanagementsystemweb.service;
 
-import njust.se2.librarymanagementsystemweb.dao.BookDao;
-import njust.se2.librarymanagementsystemweb.dao.WantedListDao;
+import njust.se2.librarymanagementsystemweb.dao.BookDAO;
+import njust.se2.librarymanagementsystemweb.dao.WantedListDAO;
 import njust.se2.librarymanagementsystemweb.pojo.Book;
 import njust.se2.librarymanagementsystemweb.pojo.Category;
 import njust.se2.librarymanagementsystemweb.pojo.WantedList;
@@ -14,11 +14,11 @@ import java.util.List;
 @Service
 public class BookService {
     @Autowired
-    BookDao bookDAO;
+    BookDAO bookDAO;
     @Autowired
     CategoryService categoryService;
     @Autowired
-    WantedListDao wantedListDao;
+    WantedListDAO wantedListDao;
 
     /**
      * 返回所有书籍的列表

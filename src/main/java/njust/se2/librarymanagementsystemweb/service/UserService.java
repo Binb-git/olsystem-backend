@@ -1,6 +1,6 @@
 package njust.se2.librarymanagementsystemweb.service;
 
-import njust.se2.librarymanagementsystemweb.dao.UserDao;
+import njust.se2.librarymanagementsystemweb.dao.UserDAO;
 import njust.se2.librarymanagementsystemweb.dto.UserDTO;
 import njust.se2.librarymanagementsystemweb.pojo.AdminRole;
 import njust.se2.librarymanagementsystemweb.pojo.User;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class UserService {
 
     @Autowired
-    UserDao userdao;
+    UserDAO userdao;
     @Autowired
     AdminRoleService adminRoleService;
     @Autowired

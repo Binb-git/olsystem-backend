@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface WantedListDao extends JpaRepository<WantedList, Integer> {
+public interface WantedListDAO extends JpaRepository<WantedList, Integer> {
     List<WantedList> findAllByUsername(String username);
 
     WantedList findByBid(int bid);

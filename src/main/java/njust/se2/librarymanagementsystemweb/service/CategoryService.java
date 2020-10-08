@@ -4,14 +4,14 @@ import njust.se2.librarymanagementsystemweb.pojo.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import njust.se2.librarymanagementsystemweb.dao.CategoryDao;
+import njust.se2.librarymanagementsystemweb.dao.CategoryDAO;
 
 import java.util.List;
 
 @Service
 public class CategoryService {
     @Autowired
-    CategoryDao categoryDAO;
+    CategoryDAO categoryDAO;
 
     /**
      * 将图书列表根据id排序
