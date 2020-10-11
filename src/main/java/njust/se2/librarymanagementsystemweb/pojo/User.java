@@ -2,7 +2,6 @@ package njust.se2.librarymanagementsystemweb.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,7 +16,7 @@ public class User {
     @Column(name = "id")
     int id;
 
-    @NotEmpty(message = "server:用户名不能为空")
+    //@NotEmpty(message = "server:用户名不能为空")
     private String username;
     private String password;
     private String salt;

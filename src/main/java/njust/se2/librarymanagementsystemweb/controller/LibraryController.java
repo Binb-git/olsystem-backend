@@ -73,12 +73,6 @@ public class LibraryController {
         return ResultFactory.buildSuccessResult_p("删除成功", null);
     }
 
-   /* @CrossOrigin
-    @GetMapping("/api/admin/books")
-    public Result listBooks() {
-        return ResultFactory.buildSuccessResult(BookService.list());
-    }*/
-
     /**
      * 根据类别查找书籍
      *

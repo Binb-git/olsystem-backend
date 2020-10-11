@@ -9,4 +9,6 @@ public interface AdminUserRoleDAO extends JpaRepository<AdminUserRole, Integer> 
     List<AdminUserRole> findAllByUid(int uid);
 
     void deleteAllByUid(int uid);
+
+    AdminUserRole findByUid(int uid);
 }
