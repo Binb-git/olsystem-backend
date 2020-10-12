@@ -10,5 +10,7 @@ public interface WantedListDAO extends JpaRepository<WantedList, Integer> {
 
     WantedList findByBid(int bid);
 
+    WantedList findByBidAndUsername(int bid, String username);
+
     void deleteById(int id);
 }

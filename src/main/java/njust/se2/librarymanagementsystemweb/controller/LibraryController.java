@@ -110,11 +110,14 @@ public class LibraryController {
     @CrossOrigin
     @PostMapping("/api/addwantedlist")
     public Result addWantedlist(@RequestBody WantedList wantedList) {
-        //读取书籍的信息
-//        bookService.SearchById(book.getId());
         System.out.println(wantedList.getBid() + " " + wantedList.getUsername());
-        bookService.addWantedList(wantedList);
-        return ResultFactory.buildSuccessResult_p("修改成功", null);
+        //bookService.getByBidAndUsername(wantedList.getBid(), wantedList.getUsername());
+        if (bookService.getByBidAndUsername(wantedList.getBid(), wantedList.getUsername()) != null) {
+            return ResultFactory.buildFailResult("不能重复收藏书籍");
+        } else {
+            bookService.addWantedList(wantedList);
+            return ResultFactory.buildSuccessResult_p("修改成功", null);
+        }
     }
 
     @CrossOrigin

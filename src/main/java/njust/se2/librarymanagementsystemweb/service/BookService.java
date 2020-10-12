@@ -107,7 +107,6 @@ public class BookService {
      */
     public void addWantedList(WantedList wantedList) {
         wantedListDao.save(wantedList);
-        System.out.println("addWantedList success");
     }
 
     /**
@@ -129,6 +128,16 @@ public class BookService {
      */
     public WantedList getByBid(int bid) {
         return wantedListDao.findByBid(bid);
+    }
+
+    /**
+     * 根据 bid username 查找书籍
+     *
+     * @param bid 书籍 id
+     * @return 查找到的书籍列表
+     */
+    public WantedList getByBidAndUsername(int bid, String username) {
+        return wantedListDao.findByBidAndUsername(bid, username);
     }
 
     /**
