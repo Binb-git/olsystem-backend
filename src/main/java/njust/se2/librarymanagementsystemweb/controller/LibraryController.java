@@ -1,10 +1,12 @@
 package njust.se2.librarymanagementsystemweb.controller;
 
+import com.sun.source.tree.LambdaExpressionTree;
 import njust.se2.librarymanagementsystemweb.pojo.Book;
 import njust.se2.librarymanagementsystemweb.pojo.WantedList;
 import njust.se2.librarymanagementsystemweb.result.Result;
 import njust.se2.librarymanagementsystemweb.result.ResultFactory;
 import njust.se2.librarymanagementsystemweb.service.BookService;
+import njust.se2.librarymanagementsystemweb.service.UserService;
 import njust.se2.librarymanagementsystemweb.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,9 @@ public class LibraryController {
     @Autowired
     BookService bookService;
 
+    @Autowired
+    UserService userService;
+
     /**
      * 获取书籍列表
      *
@@ -31,6 +36,12 @@ public class LibraryController {
     @GetMapping("/api/books")
     public Result list() throws Exception {
         return ResultFactory.buildSuccessResult(bookService.list());
+    }
+
+    @CrossOrigin
+    @GetMapping("/api/listorder")
+    public Result listOrder() throws Exception {
+        return ResultFactory.buildSuccessResult(bookService.listOrder());
     }
 
     /**
@@ -111,13 +122,20 @@ public class LibraryController {
     @PostMapping("/api/addwantedlist")
     public Result addWantedlist(@RequestBody WantedList wantedList) {
         System.out.println(wantedList.getBid() + " " + wantedList.getUsername());
-        //bookService.getByBidAndUsername(wantedList.getBid(), wantedList.getUsername());
-        if (bookService.getByBidAndUsername(wantedList.getBid(), wantedList.getUsername()) != null) {
-            return ResultFactory.buildFailResult("不能重复收藏书籍");
-        } else {
-            bookService.addWantedList(wantedList);
-            return ResultFactory.buildSuccessResult_p("修改成功", null);
-        }
+//        if (bookService.getByBidAndUsername(wantedList.getBid(), wantedList.getUsername()) != null) {
+//            return ResultFactory.buildFailResult("不能重复收藏书籍");
+//        } else {
+//            bookService.addWantedList(wantedList);
+//            return ResultFactory.buildSuccessResult_p("修改成功", null);
+//        }
+        String phone = userService.getByName(wantedList.getUsername()).getPhone();
+        String cid = bookService.SearchById(wantedList.getBid()).get(0).getCategory().getName();
+        String price = bookService.SearchById(wantedList.getBid()).get(0).getprice();
+        wantedList.setPhone(phone);
+        wantedList.setCid(cid);
+        wantedList.setPrice(price);
+        bookService.addWantedList(wantedList);
+        return ResultFactory.buildSuccessResult_p("修改成功", null);
     }
 
     @CrossOrigin
@@ -141,6 +159,20 @@ public class LibraryController {
         return ResultFactory.buildSuccessResult(bookService.findBookById(book.getId()));
     }
 
+    @CrossOrigin
+    @PostMapping("/api/setstatus")
+    public Result SetStatus(@RequestBody WantedList wantedList) {
+        System.out.println("id" + wantedList.getId());
+        bookService.setStatus(wantedList);
+        return ResultFactory.buildSuccessResult_p("success", null);
+    }
+
+    @CrossOrigin
+    @PostMapping("/api/getadressbybid")
+    public Result GetAdressbyBid(@RequestBody WantedList wantedList) {
+        System.out.println("ad " + wantedList.getBid() + wantedList.getUsername());
+        return ResultFactory.buildSuccessResult_p("success", bookService.getByBidAndUsername(wantedList.getBid(), wantedList.getUsername()));
+    }
 
     @CrossOrigin
     @PostMapping("/api/admin/content/books/covers")

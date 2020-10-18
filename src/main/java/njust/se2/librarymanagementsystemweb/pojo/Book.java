@@ -19,7 +19,7 @@ public class Book {
 
     String cover;
     String bookname;
-    String author;
+    String price;
     String date;
     String press;
     String abs;
@@ -80,12 +80,12 @@ public class Book {
         this.bookname = bookname;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getprice() {
+        return price;
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        this.price = price;
     }
 
     public Book(int id, Category category, String cover, String bookname, String author, String date, String press, String abs) {
@@ -93,7 +93,7 @@ public class Book {
         this.category = category;
         this.cover = cover;
         this.bookname = bookname;
-        this.author = author;
+        this.price = price;
         this.date = date;
         this.press = press;
         this.abs = abs;

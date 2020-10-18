@@ -30,6 +30,14 @@ public class BookService {
         return bookDAO.findAll(sort);
     }
 
+    /**
+     * 返回所有订单列表
+     * @return 订单列表
+     */
+    public List<WantedList> listOrder() {
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");;
+        return wantedListDao.findAll(sort);
+    }
 
     /**
      * 无主键则增添，有主键则更新。
@@ -67,7 +75,7 @@ public class BookService {
      * @return 符合关键字条件的书籍列表
      */
     public List<Book> Search(String keywords) {
-        return bookDAO.findAllByBooknameLikeOrAuthorLike('%' + keywords + '%', '%' + keywords + '%');
+        return bookDAO.findAllByBooknameLikeOrPriceLike('%' + keywords + '%', '%' + keywords + '%');
     }
 
     /**
@@ -147,5 +155,9 @@ public class BookService {
      */
     public void deletebyId(int id) {
         wantedListDao.deleteById(id);
+    }
+
+    public void setStatus(WantedList wantedList) {
+        wantedListDao.save(wantedList);
     }
 }
